@@ -7,8 +7,8 @@ import React, {
   useRef,
 } from 'react';
 import type {
-  NativeSyntheticEvent,
-  TextInputFocusEventData,
+  BlurEvent,
+  FocusEvent,
 } from 'react-native';
 import { TextInput as RNTextInput } from 'react-native';
 import { TextInput } from 'react-native-gesture-handler';
@@ -29,8 +29,8 @@ const BottomSheetTextInputComponent = forwardRef<
   //#endregion
 
   //#region callbacks
-  const handleOnFocus = useCallback(
-    (args: NativeSyntheticEvent<TextInputFocusEventData>) => {
+  const handleOnFocus: ((e: FocusEvent) => void) = useCallback(
+    (args: FocusEvent) => {
       animatedKeyboardState.set(state => ({
         ...state,
         target: args.nativeEvent.target,
@@ -41,12 +41,10 @@ const BottomSheetTextInputComponent = forwardRef<
     },
     [onFocus, animatedKeyboardState]
   );
-  const handleOnBlur = useCallback(
-    (args: NativeSyntheticEvent<TextInputFocusEventData>) => {
+  const handleOnBlur: ((e: BlurEvent) => void) = useCallback(
+    (args: BlurEvent) => {
       const keyboardState = animatedKeyboardState.get();
-      const currentFocusedInput = findNodeHandle(
-        RNTextInput.State.currentlyFocusedInput()
-      );
+      const currentFocusedInput = RNTextInput.State.currentlyFocusedField()
 
       /**
        * we need to make sure that we only remove the target

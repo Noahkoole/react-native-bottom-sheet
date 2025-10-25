@@ -1,13 +1,12 @@
-import type React from 'react';
 import { useCallback, useEffect } from 'react';
-import type { SharedValue } from 'react-native-reanimated';
+import type { AnimatedRef, SharedValue } from 'react-native-reanimated';
 import type { SCROLLABLE_TYPE } from '../constants';
 import type { Scrollable } from '../types';
 import { findNodeHandle } from '../utilities';
 import { useBottomSheetInternal } from './useBottomSheetInternal';
 
 export const useScrollableSetter = (
-  ref: React.RefObject<Scrollable>,
+  ref: AnimatedRef<Scrollable>,
   type: SCROLLABLE_TYPE,
   contentOffsetY: SharedValue<number>,
   refreshable: boolean,

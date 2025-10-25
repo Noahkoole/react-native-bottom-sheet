@@ -1,4 +1,3 @@
-import type React from 'react';
 import type {
   AccessibilityProps,
   FlatList,
@@ -18,6 +17,7 @@ import type {
   State,
 } from 'react-native-gesture-handler';
 import type {
+  AnimatedRef,
   EasingFunction,
   EasingFunctionFactory,
   ReduceMotion,
@@ -30,8 +30,7 @@ import type {
   ANIMATION_STATUS,
   GESTURE_SOURCE,
   KEYBOARD_STATUS,
-  SCROLLABLE_STATUS,
-  SCROLLABLE_TYPE,
+  SCROLLABLE_TYPE
 } from './constants';
 
 //#region Methods
@@ -134,7 +133,7 @@ export type ScrollableState = {
 export type Scrollable = FlatList | ScrollView | SectionList;
 export type ScrollableRef = {
   id: number;
-  node: React.RefObject<Scrollable>;
+  node: AnimatedRef<Scrollable>;
 };
 export type ScrollableEvent = (
   event: Pick<NativeSyntheticEvent<NativeScrollEvent>, 'nativeEvent'>
@@ -226,7 +225,7 @@ type ScrollEventHandlerCallbackType<C = never> = (
 ) => void;
 
 export type ScrollEventsHandlersHookType = (
-  ref: React.RefObject<Scrollable>,
+  ref: AnimatedRef<Scrollable>,
   contentOffsetY: SharedValue<number>
 ) => {
   handleOnScroll?: ScrollEventHandlerCallbackType;

@@ -56,6 +56,7 @@ import {
 } from '../../utilities';
 import { BottomSheetBackgroundContainer } from '../bottomSheetBackground';
 // import BottomSheetDebugView from '../bottomSheetDebugView';
+import { BottomSheetInternalContextType } from 'src/contexts/internal';
 import { BottomSheetFooterContainer } from '../bottomSheetFooter';
 import BottomSheetGestureHandlersProvider from '../bottomSheetGestureHandlersProvider';
 import {
@@ -1429,7 +1430,7 @@ const BottomSheetComponent = forwardRef<BottomSheet, BottomSheetProps>(
 
     //#region contexts variables
     const internalContextVariables = useMemo(
-      () => ({
+      (): BottomSheetInternalContextType => ({
         textInputNodesRef,
         enableContentPanningGesture,
         enableDynamicSizing,

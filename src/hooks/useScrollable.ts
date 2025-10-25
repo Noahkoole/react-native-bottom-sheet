@@ -1,6 +1,7 @@
-import { type RefObject, useCallback, useRef } from 'react';
+import { useCallback, useRef } from 'react';
 import type { NodeHandle } from 'react-native';
 import {
+  AnimatedRef,
   type SharedValue,
   useDerivedValue,
   useSharedValue,
@@ -98,7 +99,7 @@ export const useScrollable = (
     }
   }, []);
 
-  const removeScrollableRef = useCallback((ref: RefObject<Scrollable>) => {
+  const removeScrollableRef = useCallback((ref: AnimatedRef<Scrollable>) => {
     // find node handle id
     let id: NodeHandle | null;
     try {
